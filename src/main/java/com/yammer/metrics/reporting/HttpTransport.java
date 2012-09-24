@@ -1,9 +1,12 @@
 package com.yammer.metrics.reporting;
 
+import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.conn.PoolingClientConnectionManager;
+import org.apache.http.util.EntityUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -15,7 +18,7 @@ public class HttpTransport implements Transport {
     private final String seriesUrl;
 
     public HttpTransport(String host, String apiKey) {
-        this.client = new DefaultHttpClient();
+        this.client = new DefaultHttpClient(new PoolingClientConnectionManager());
         this.seriesUrl = String.format("https://%s/api/v1/series?api_key=%s", host, apiKey);
     }
 
@@ -41,10 +44,15 @@ public class HttpTransport implements Transport {
         }
 
         public void send() throws Exception {
-            out.flush();
-            out.close();
-            postRequest.setEntity(new ByteArrayEntity(out.toByteArray()));
-            requestClient.execute(postRequest);
+            try {
+                out.flush();
+                out.close();
+                postRequest.setEntity(new ByteArrayEntity(out.toByteArray()));
+                HttpResponse response = requestClient.execute(postRequest);
+                EntityUtils.consumeQuietly(response.getEntity());
+            } finally {
+                postRequest.reset();    // We don't reuse the postRequest between metrics pushes - but this
+            }
         }
     }
 }
