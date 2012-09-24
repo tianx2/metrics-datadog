@@ -1,22 +1,16 @@
 # Metrics Datadog Reporter
-Simple Metrics reporter that sends The Goods to Datadog. Real person
-documentation pending
+Simple Metrics reporter backend that sends metrics to DataDog.
 
 ## Usage
 
-~~~scala
+~~~java
 import com.yammer.metrics.reporting.DatadogReporter
 
 ...
 
-DatadogReporter.enable(15, TimeUnit.SECONDS, myDatadogKey)
+DatadogReporter.enable(15, TimeUnit.SECONDS, myDatadogKey, dataDogHostname)
 ~~~
 
-## Maven
-
-This repo is subject to change. Nuts!
-
-* Remote:   https://s3.amazonaws.com/maven.vistarmedia.com/maven/snapshots
-* Group:    com.vistarmedia
-* Artifact: metrics-datadog
-* Version:  0.0.8-SNAPSHOT
+The hostname provided with each publish needs to match the hostname defined in the /etd/dd-agent/datadog.conf file
+that configures the DataDog agent.  This is so that the metrics being pushed directly to datadog via this library
+can be associated with other (box-level) metrics being pushed by the agent.
