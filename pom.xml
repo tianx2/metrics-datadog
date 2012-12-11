@@ -9,7 +9,7 @@
 
     <groupId>com.bazaarvoice.metrics</groupId>
 	<artifactId>bv-metrics-datadog</artifactId>
-	<version>0.0.24-SNAPSHOT</version>
+	<version>0.0.24</version>
     <packaging>jar</packaging>
 
     <name>Datadog Metrics Support</name>
