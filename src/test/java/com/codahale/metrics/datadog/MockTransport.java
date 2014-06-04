@@ -1,4 +1,6 @@
-package com.yammer.metrics.reporting;
+package com.codahale.metrics.datadog;
+
+import com.codahale.metrics.datadog.Transport;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

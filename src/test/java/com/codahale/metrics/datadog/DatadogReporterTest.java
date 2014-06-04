@@ -1,4 +1,4 @@
-package com.yammer.metrics.reporting;
+package com.codahale.metrics.datadog;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yammer.metrics.core.Clock;
@@ -81,14 +81,14 @@ public class DatadogReporterTest {
         Map<String, Object> counterEntry = (Map<String, Object>) series.get(0);
         Map<String, Object> gaugeEntry = (Map<String, Object>) series.get(1);
 
-        assertEquals("com.yammer.metrics.reporting.DatadogReporterTest.my.counter",
+        assertEquals("com.codahale.metrics.datadog.DatadogReporterTest.my.counter",
                      counterEntry.get("metric"));
         assertEquals("counter", counterEntry.get("type"));
         List<List<Number>> points = (List<List<Number>>) counterEntry.get("points");
         assertEquals(1, points.get(0).get(1));
 
         assertEquals(
-                "com.yammer.metrics.reporting.DatadogReporterTest.my.invocations",
+                "com.codahale.metrics.datadog.DatadogReporterTest.my.invocations",
                 gaugeEntry.get("metric"));
         assertEquals("gauge", gaugeEntry.get("type"));
         points = (List<List<Number>>) gaugeEntry.get("points");

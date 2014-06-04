@@ -1,4 +1,4 @@
-package com.yammer.metrics.reporting;
+package com.codahale.metrics.datadog;
 
 import com.google.common.base.Throwables;
 import org.apache.http.client.ClientProtocolException;

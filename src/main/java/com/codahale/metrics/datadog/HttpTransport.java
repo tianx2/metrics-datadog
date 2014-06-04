@@ -1,4 +1,4 @@
-package com.yammer.metrics.reporting;
+package com.codahale.metrics.datadog;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

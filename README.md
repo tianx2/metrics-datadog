@@ -4,7 +4,7 @@ Simple Metrics reporter backend that sends metrics to DataDog.
 ## Usage
 
 ~~~java
-import com.yammer.metrics.reporting.DatadogReporter
+import com.codahale.metrics.datadog.DatadogReporter
 
 ...
 

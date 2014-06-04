@@ -1,4 +1,4 @@
-package com.yammer.metrics.reporting;
+package com.codahale.metrics.datadog;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -19,9 +19,9 @@ import com.yammer.metrics.core.Sampling;
 import com.yammer.metrics.core.Summarizable;
 import com.yammer.metrics.core.Timer;
 import com.yammer.metrics.core.VirtualMachineMetrics;
-import com.yammer.metrics.reporting.Transport.Request;
-import com.yammer.metrics.reporting.model.DatadogCounter;
-import com.yammer.metrics.reporting.model.DatadogGauge;
+import com.yammer.metrics.reporting.AbstractPollingReporter;
+import com.codahale.metrics.datadog.model.DatadogCounter;
+import com.codahale.metrics.datadog.model.DatadogGauge;
 import com.yammer.metrics.stats.Snapshot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -103,7 +103,7 @@ public class DatadogReporter extends AbstractPollingReporter implements MetricPr
 
     @Override
     public void run() {
-        Request request = null;
+        Transport.Request request = null;
         try {
             request = transport.prepare();
             jsonOut = jsonFactory.createJsonGenerator(request.getBodyWriter());
