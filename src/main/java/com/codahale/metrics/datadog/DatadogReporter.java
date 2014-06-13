@@ -1,14 +1,14 @@
-package com.yammer.metrics.reporting;
+package com.codahale.metrics.datadog;
 
+import com.codahale.metrics.datadog.model.DatadogCounter;
+import com.codahale.metrics.datadog.model.DatadogGauge;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.yammer.metrics.Metrics;
 import com.yammer.metrics.core.*;
 import com.yammer.metrics.core.Timer;
-import com.yammer.metrics.reporting.Transport.Request;
-import com.yammer.metrics.reporting.model.DatadogCounter;
-import com.yammer.metrics.reporting.model.DatadogGauge;
+import com.yammer.metrics.reporting.AbstractPollingReporter;
 import com.yammer.metrics.stats.Snapshot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,7 +59,7 @@ public class DatadogReporter extends AbstractPollingReporter implements
   @Override
   public void run() {
     try {
-      Request request = null;
+      Transport.Request request = null;
       try {
         request = transport.prepare();
         jsonOut = jsonFactory.createGenerator(request.getBodyWriter());

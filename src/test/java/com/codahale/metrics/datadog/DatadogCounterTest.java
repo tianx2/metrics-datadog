@@ -1,7 +1,6 @@
-package com.yammer.metrics.reporting;
+package com.codahale.metrics.datadog;
 
-import com.yammer.metrics.reporting.model.DatadogCounter;
-
+import com.codahale.metrics.datadog.model.DatadogCounter;
 import org.junit.Test;
 
 import java.util.ArrayList;
