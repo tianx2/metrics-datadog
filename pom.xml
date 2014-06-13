@@ -43,8 +43,8 @@
         </contributor>
     </contributors>
     <properties>
-        <metrics.version>2.2.0</metrics.version>
-        <jackson.version>2.2.2</jackson.version>
+        <metrics.version>3.0.2</metrics.version>
+        <jackson.version>2.3.2</jackson.version>
     </properties>
     <build>
         <plugins>
@@ -101,7 +101,7 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>com.yammer.metrics</groupId>
+            <groupId>com.codahale.metrics</groupId>
             <artifactId>metrics-core</artifactId>
             <version>${metrics.version}</version>
             <type>jar</type>
@@ -116,6 +116,12 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.9.0</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
