@@ -2,23 +2,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <modules>
-        <module>metrics-datadog</module>
-    </modules>
-
-    <parent>
-        <groupId>com.bazaarvoice.commons</groupId>
-        <artifactId>bv-super-pom</artifactId>
-        <version>1.10</version>
-    </parent>
 
     <groupId>com.bazaarvoice.metrics</groupId>
-    <artifactId>bv-metrics-datadog</artifactId>
-    <version>0.0.27-SNAPSHOT</version>
+    <artifactId>metrics-datadog-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Datadog Metrics Support</name>
-    <description>A backend reporter for Yammer metrics to send data directly to Datadog</description>
+    <name>Datadog Metrics Parent</name>
 
     <scm>
         <connection>scm:git:git@github.com:bazaarvoice/metrics-datadog.git</connection>
@@ -27,14 +17,56 @@
     <properties>
         <metrics.version>3.0.2</metrics.version>
         <jackson.version>2.3.2</jackson.version>
+        <dropwizard.version>0.7.1</dropwizard.version>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.codahale.metrics</groupId>
+                <artifactId>metrics-core</artifactId>
+                <version>${metrics.version}</version>
+                <type>jar</type>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.dropwizard</groupId>
+                <artifactId>dropwizard-metrics</artifactId>
+                <version>${dropwizard.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>fluent-hc</artifactId>
+                <version>4.3.4</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.10</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.easytesting</groupId>
+                <artifactId>fest-assert-core</artifactId>
+                <version>2.0M10</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>1.9.0</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>metrics-datadog</module>
+        <module>dropwizard-metrics-datadog</module>
+    </modules>
 </project>
