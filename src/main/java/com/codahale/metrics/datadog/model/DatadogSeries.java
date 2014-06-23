@@ -1,4 +1,4 @@
-package com.yammer.metrics.reporting.model;
+package com.codahale.metrics.datadog.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;

@@ -4,11 +4,15 @@ Simple Metrics reporter backend that sends metrics to DataDog.
 ## Usage
 
 ~~~java
-import com.yammer.metrics.reporting.DatadogReporter
+import com.codahale.metrics.datadog.DatadogReporter
 
-...
+final DatadogReporter reporter = DatadogReporter.forRegistry(registry)
+                                                .withApiKey(apiKey)
+                                                .withApplicationKey(applicationKey)
+                                                .filter(MetricFilter.ALL)
+                                                .build();
 
-DatadogReporter.enable(15, TimeUnit.SECONDS, myDatadogKey, dataDogHostname)
+reporter.start(1, TimeUnit.MINUTES);
 ~~~
 
 The hostname provided with each publish needs to match the hostname defined in the /etd/dd-agent/datadog.conf file
