@@ -38,6 +38,7 @@ public class Datadog {
 
     public void createSeries() {
         try {
+            out.reset();
             jsonOut = jsonFactory.createGenerator(out);
             jsonOut.writeStartObject();
             jsonOut.writeArrayFieldStart("series");
