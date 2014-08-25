@@ -62,13 +62,16 @@ public class Datadog {
             out.flush();
             out.close();
 
+            LOG.info("Sending metrics to datadog");
+            LOG.debug("{}", this.out.toString());
             org.apache.http.client.fluent.Request.Post(this.seriesUrl)
                 .addHeader("Content-Type",
                            ContentType.APPLICATION_JSON.toString())
                 .bodyByteArray(this.out.toByteArray())
                 .connectTimeout(5000)
                 .socketTimeout(30000)
-                .execute();
+                .execute()
+                .discardContent();
         } catch (Throwable e) {
             LOG.error("Error sending metrics", e);
         }
